@@ -129,13 +129,4 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_BROKER_URL = config('REDISCLOUD_URL', default='redis://')
-
 CELERY_TASK_SERIALIZER = "json"
-#CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
-
-#BROKER_URL = os.environ.get("REDISCLOUD_URL", "django://")
-#BROKER_POOL_LIMIT = 1
-#BROKER_CONNECTION_MAX_RETRIES = None
-# BROKER_TRANSPORT_OPTIONS = {
-#     "max_connections": 2,
-# }
