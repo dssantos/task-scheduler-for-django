@@ -1,2 +1,1 @@
-web: gunicorn task_scheduler.wsgi --log-file -
-release: python manage.py migrate --noinput
+#web: env > .env; env PYTHONUNBUFFERED=true honcho start -f Procfile.real 2>&1
