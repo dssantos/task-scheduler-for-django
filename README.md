@@ -14,6 +14,7 @@ source .task_scheduler/bin/activate
 pip install --upgrade pip
 pip install -r requirements-dev.txt
 cp contrib/env-sample .env
+python contrib/secret_gen.py
 cat .env
 ```
 
@@ -33,17 +34,21 @@ cat .env
 heroku login
 echo -e """\
 web: gunicorn task_scheduler.wsgi --log-file -
-release: python manage.py makemigrations --noinput $ python manage.py migrate --noinput
+release: python manage.py makemigrations --noinput & python manage.py migrate --noinput
 celery: celery -A task_scheduler worker -l info & celery -A task_scheduler beat -l info
 """ > Procfile
 git add .
 git commit -m 'Deploy in Heroku'
 heroku apps:create
+heroku addons:add rediscloud
+python contrib/secret_gen.py
 heroku config:set SECRET_KEY='XXXXXXXXXXXXXXXXXXXXXX'
 heroku config:set DEBUG=True
 git push heroku master --force
 heroku ps:scale celery=1
-python manage.py createsuperuser
+heroku run python manage.py makemigrations
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
 heroku open
 ```
 
