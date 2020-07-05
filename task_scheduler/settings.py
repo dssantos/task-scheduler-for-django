@@ -128,12 +128,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-CELERY_TASK_SERIALIZER = "json"
-CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
+#CELERY_TASK_SERIALIZER = "json"
+#CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
 
 BROKER_URL = os.environ.get("CLOUDAMQP_URL", "django://")
-BROKER_POOL_LIMIT = 1
-BROKER_CONNECTION_MAX_RETRIES = None
-BROKER_TRANSPORT_OPTIONS = {
-    "max_connections": 2,
-}
+#BROKER_POOL_LIMIT = 1
+#BROKER_CONNECTION_MAX_RETRIES = None
+# BROKER_TRANSPORT_OPTIONS = {
+#     "max_connections": 2,
+# }
