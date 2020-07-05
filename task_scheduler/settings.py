@@ -130,7 +130,7 @@ CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 CELERY_BROKER_URL = config('REDISCLOUD_URL', default='redis://')
 
-#CELERY_TASK_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
 #CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
 
 #BROKER_URL = os.environ.get("REDISCLOUD_URL", "django://")
